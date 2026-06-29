@@ -1,0 +1,437 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Did You Know Series | Procore Tips for the Tesla Team</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#f0f2f5;font-family:'Segoe UI',Arial,sans-serif;color:#1a1a2e}
+  a{color:inherit;text-decoration:none}
+  .wrapper{max-width:640px;margin:32px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,.12)}
+
+  /* HEADER */
+  .header{background:linear-gradient(135deg,#0d1b2a 0%,#1b3a5c 60%,#0f4c75 100%);padding:44px 36px 36px;position:relative;overflow:hidden}
+  .header::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;background:rgba(255,255,255,.03);border-radius:50%}
+  .header::after{content:'';position:absolute;bottom:-50px;left:-50px;width:200px;height:200px;background:rgba(255,255,255,.025);border-radius:50%}
+  .header-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px}
+  .series-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:5px 14px}
+  .series-badge .dot{width:8px;height:8px;border-radius:50%;background:#4fc3f7;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .series-badge span{font-size:11px;font-weight:700;color:rgba(255,255,255,.85);letter-spacing:1.5px;text-transform:uppercase}
+  .header-icon-wrap{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:8px 14px}
+  .eyebrow{font-size:12px;color:#4fc3f7;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+  .header h1{font-size:30px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:10px}
+  .header h1 em{font-style:normal;color:#4fc3f7}
+  .header .subtitle{font-size:14px;color:rgba(255,255,255,.6);line-height:1.65;max-width:480px}
+  .header-stats{display:flex;gap:24px;margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)}
+  .hstat{text-align:center}
+  .hstat-num{font-size:22px;font-weight:800;color:#4fc3f7}
+  .hstat-label{font-size:10px;color:rgba(255,255,255,.45);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+
+  /* BODY */
+  .body{padding:32px 36px}
+  .section-label{font-size:11px;font-weight:700;color:#0f4c75;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+  .section-label::after{content:'';flex:1;height:1px;background:#e8ecf0}
+
+  /* ENTRY CARDS */
+  .entry-card{display:flex;gap:0;background:#fff;border:1px solid #e8ecf0;border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:.2s}
+  .entry-card:hover{box-shadow:0 6px 24px rgba(15,76,117,.12);border-color:#b3d4f5;transform:translateY(-1px)}
+  .entry-card.published .card-accent{background:linear-gradient(180deg,#0f4c75,#1b6ca8)}
+  .entry-card.coming-soon .card-accent{background:linear-gradient(180deg,#94a3b8,#b0bec5)}
+  .card-accent{width:5px;flex-shrink:0}
+  .card-inner{display:flex;align-items:center;gap:16px;padding:18px 20px;flex:1}
+  .card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;position:relative}
+  .card-icon.meetings{background:linear-gradient(135deg,#e3f2fd,#bbdefb)}
+  .card-icon.photos{background:linear-gradient(135deg,#e8f5e9,#c8e6c9)}
+  .card-icon.defects{background:linear-gradient(135deg,#fce4ec,#f8bbd0)}
+  .card-icon.overlays{background:linear-gradient(135deg,#f3e5f5,#e1bee7)}
+  .card-icon.soon{background:#f1f5f9}
+  .card-content{flex:1;min-width:0}
+  .card-meta{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+  .card-tag{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:10px}
+  .card-tag.published{background:rgba(15,76,117,.1);color:#0f4c75}
+  .card-tag.coming-soon{background:#f1f5f9;color:#94a3b8}
+  .card-title{font-size:14px;font-weight:700;color:#0d1b2a;margin-bottom:3px;line-height:1.3}
+  .card-desc{font-size:12px;color:#64748b;line-height:1.5}
+  .card-arrow{color:#b0bec5;font-size:18px;flex-shrink:0;transition:.2s}
+  .entry-card:hover .card-arrow{color:#0f4c75;transform:translateX(3px)}
+  .entry-card.coming-soon .card-arrow{color:#d0d7df}
+  .entry-card.coming-soon:hover{transform:none;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .entry-card.coming-soon:hover .card-arrow{color:#d0d7df;transform:none}
+
+  /* CARD COMPLETION STATE */
+  .entry-card.done{border-color:#86efac}
+  .entry-card.done .card-accent{background:linear-gradient(180deg,#059669,#34d399)}
+  .entry-card.done:hover{border-color:#34d399;box-shadow:0 6px 24px rgba(5,150,105,.12)}
+  .entry-card.done .card-arrow{color:#059669}
+  .entry-card.done:hover .card-arrow{color:#059669;transform:none}
+  .done-tag{background:rgba(5,150,105,.12)!important;color:#059669!important}
+  .check-badge{position:absolute;bottom:-4px;right:-4px;width:18px;height:18px;background:#059669;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;color:#fff}
+
+  /* PROGRESS BAR */
+  .series-progress{background:#f8fafc;border:1px solid #e8ecf0;border-radius:10px;padding:18px 20px;margin-bottom:28px}
+  .sp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .sp-title{font-size:12px;font-weight:700;color:#0d1b2a}
+  .sp-count{font-size:12px;color:#64748b}
+  .sp-bar-wrap{background:#e8ecf0;border-radius:6px;height:8px;overflow:hidden;margin-bottom:10px}
+  .sp-bar{background:linear-gradient(90deg,#0f4c75,#4fc3f7);height:100%;border-radius:6px;transition:width .5s ease}
+  .sp-dots{display:flex;gap:6px;justify-content:space-between}
+  .sp-dot{flex:1;text-align:center}
+  .sp-dot-circle{width:16px;height:16px;border-radius:50%;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:900;transition:.3s}
+  .sp-dot-circle.done{background:#0f4c75;color:#fff}
+  .sp-dot-circle.complete{background:#059669;color:#fff}
+  .sp-dot-circle.soon{background:#e8ecf0;color:#94a3b8}
+  .sp-dot-label{font-size:9px;color:#94a3b8;line-height:1.3}
+
+  /* LOGIN PANEL */
+  .login-panel{background:linear-gradient(135deg,#f0f7ff,#e8f4ff);border:1px solid #b3d4f5;border-radius:12px;padding:28px 24px;margin-bottom:24px;text-align:center}
+  .lp-icon{font-size:36px;margin-bottom:12px}
+  .login-panel h3{font-size:16px;font-weight:800;color:#0d1b2a;margin-bottom:8px}
+  .login-panel p{font-size:12px;color:#64748b;line-height:1.6;margin-bottom:18px;max-width:360px;margin-left:auto;margin-right:auto}
+  .lp-row{display:flex;gap:8px}
+  .lp-row input{flex:1;padding:10px 14px;border:1.5px solid #b3d4f5;border-radius:8px;font-size:13px;outline:none;font-family:inherit;color:#0d1b2a;min-width:0}
+  .lp-row input:focus{border-color:#0f4c75;box-shadow:0 0 0 3px rgba(15,76,117,.1)}
+  .lp-row button{padding:10px 20px;background:linear-gradient(135deg,#0f4c75,#1b6ca8);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit}
+  .lp-row button:hover{opacity:.9}
+  .lp-note{font-size:11px;color:#94a3b8;margin-top:12px}
+
+  /* PROFILE BAR */
+  .profile-bar{background:#f0f7ff;border:1px solid #b3d4f5;border-radius:10px;padding:13px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+  .pb-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0f4c75,#1b6ca8);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:.5px}
+  .pb-info{flex:1;min-width:0}
+  .pb-email{font-size:12px;font-weight:700;color:#0d1b2a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pb-prog{font-size:11px;color:#64748b;margin-top:2px}
+  .pb-switch{background:none;border:1px solid #b3d4f5;border-radius:6px;padding:5px 11px;font-size:11px;color:#64748b;cursor:pointer;font-family:inherit;flex-shrink:0}
+  .pb-switch:hover{background:#e8f4ff;color:#0f4c75;border-color:#90caf9}
+
+  /* BADGES */
+  .badges-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px}
+  .badge-card{text-align:center;border-radius:10px;padding:16px 10px 14px;border:1.5px solid;transition:.2s}
+  .badge-card.earned{background:linear-gradient(135deg,#fffbeb,#fef9c3);border-color:#fbbf24;box-shadow:0 2px 10px rgba(251,191,36,.2)}
+  .badge-card.earned:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(251,191,36,.3)}
+  .badge-card.locked{background:#f8fafc;border-color:#e8ecf0;filter:grayscale(.5)}
+  .bm{font-size:30px;margin-bottom:8px}
+  .bt{font-size:10px;font-weight:800;color:#0d1b2a;text-transform:uppercase;letter-spacing:.5px;line-height:1.3;margin-bottom:3px}
+  .bs{font-size:9px;color:#94a3b8;line-height:1.4}
+  .bd{font-size:9px;color:#d97706;font-weight:700;margin-top:5px}
+
+  /* SUGGEST */
+  .suggest-box{background:linear-gradient(135deg,#0d1b2a,#1b3a5c);border-radius:10px;padding:22px 24px;margin-bottom:28px;display:flex;align-items:center;gap:20px}
+  .suggest-icon{font-size:32px;flex-shrink:0}
+  .suggest-content{flex:1}
+  .suggest-content h4{font-size:14px;font-weight:800;color:#fff;margin-bottom:5px}
+  .suggest-content p{font-size:12px;color:rgba(255,255,255,.65);line-height:1.55}
+  .suggest-btn{display:inline-block;background:linear-gradient(135deg,#4fc3f7,#1976d2);color:#fff;font-weight:700;font-size:12px;padding:9px 20px;border-radius:20px;margin-top:10px;letter-spacing:.3px;box-shadow:0 4px 12px rgba(79,195,247,.3)}
+
+  /* FOOTER */
+  .footer{background:#f8fafc;border-top:1px solid #e8ecf0;padding:24px 36px;text-align:center}
+  .footer .series-dots{display:flex;justify-content:center;gap:6px;margin-bottom:12px}
+  .fdot{width:8px;height:8px;border-radius:50%;background:#d0d7df}
+  .fdot.f{background:#0f4c75}
+  .footer p{font-size:11px;color:#94a3b8;line-height:1.7}
+  .footer strong{color:#475569}
+
+  @media(max-width:500px){
+    .header{padding:28px 20px 24px}.body{padding:24px 20px}.footer{padding:20px}
+    .header h1{font-size:24px}.header-stats{gap:16px}
+    .card-inner{gap:12px;padding:14px 16px}.card-icon{width:40px;height:40px;font-size:18px}
+    .badges-grid{grid-template-columns:repeat(2,1fr)}
+    .lp-row{flex-direction:column}
+  }
+  html{zoom:1.75}
+</style>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_ApprovalStatus msdt:dt="string">0</mso:_ApprovalStatus>
+<mso:_ApprovalAssignedTo msdt:dt="string"></mso:_ApprovalAssignedTo>
+<mso:_ApprovalRespondedBy msdt:dt="string"></mso:_ApprovalRespondedBy>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="header-top">
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
+        <div class="header-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="96" height="28" viewBox="0 0 96 28">
+            <rect width="96" height="28" rx="5" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+            <path d="M7,5 L25,5 L23,10 L18,9 L18,23 L14,23 L14,9 L9,10 Z" fill="#E31937"/>
+            <text x="31" y="13" font-family="'Segoe UI',Arial,sans-serif" font-size="8" font-weight="800" fill="rgba(255,255,255,0.95)" letter-spacing="1.5">TESLA</text>
+            <text x="31" y="23" font-family="'Segoe UI',Arial,sans-serif" font-size="8" font-weight="600" fill="rgba(255,255,255,0.6)" letter-spacing="1">ENERGY</text>
+          </svg>
+        </div>
+        <div class="series-badge"><div class="dot"></div><span>Did You Know Series</span></div>
+      </div>
+    </div>
+    <div class="eyebrow">Procore Tips for the Tesla Team</div>
+    <h1>Did You Know<br><em>Series Index</em></h1>
+    <p class="subtitle">A growing collection of quick guides to help every Tesla project team member get the most out of Procore - sent by your Document Control team.</p>
+    <div class="header-stats">
+      <div class="hstat"><div class="hstat-num">4</div><div class="hstat-label">Published</div></div>
+      <div class="hstat"><div class="hstat-num">5+</div><div class="hstat-label">Planned</div></div>
+      <div class="hstat"><div class="hstat-num">APAC</div><div class="hstat-label">Coverage</div></div>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- LOGIN PANEL (hidden once email saved) -->
+    <div id="loginPanel" class="login-panel">
+      <div class="lp-icon">&#x1F3AF;</div>
+      <h3>Track Your Progress</h3>
+      <p>Enter your email to save which guides you&rsquo;ve completed and earn a badge for each one. No password needed.</p>
+      <div class="lp-row">
+        <input type="email" id="emailInput" placeholder="your.name@tesla.com" autocomplete="email">
+        <button onclick="doLogin()">Get Started &rarr;</button>
+      </div>
+      <div class="lp-note">Your progress is saved in this browser - no account required.</div>
+    </div>
+
+    <!-- PROFILE BAR (shown once email saved) -->
+    <div id="profileBar" class="profile-bar" style="display:none">
+      <div class="pb-av" id="pbAv"></div>
+      <div class="pb-info">
+        <div class="pb-email" id="pbEmail"></div>
+        <div class="pb-prog" id="pbProg"></div>
+      </div>
+      <button class="pb-switch" onclick="switchAccount()">Switch</button>
+    </div>
+
+    <div class="series-progress">
+      <div class="sp-header">
+        <div class="sp-title" id="spTitle">Series progress</div>
+        <div class="sp-count" id="spCount">4 of 5+ topics published</div>
+      </div>
+      <div class="sp-bar-wrap"><div class="sp-bar" id="spBar" style="width:80%"></div></div>
+      <div class="sp-dots">
+        <div class="sp-dot"><div class="sp-dot-circle done" id="dot-meetings">&#x2605;</div><div class="sp-dot-label">Meetings</div></div>
+        <div class="sp-dot"><div class="sp-dot-circle done" id="dot-photos">&#x2605;</div><div class="sp-dot-label">Photos</div></div>
+        <div class="sp-dot"><div class="sp-dot-circle done" id="dot-defects">&#x2605;</div><div class="sp-dot-label">Defect List</div></div>
+        <div class="sp-dot"><div class="sp-dot-circle done" id="dot-overlays">&#x2605;</div><div class="sp-dot-label">Overlays</div></div>
+        <div class="sp-dot"><div class="sp-dot-circle soon">?</div><div class="sp-dot-label">Coming soon</div></div>
+      </div>
+    </div>
+
+    <div class="section-label">Published guides</div>
+
+    <a class="entry-card published" id="card-meetings" href="DYK%20-%20Procore%20Meetings.html">
+      <div class="card-accent"></div>
+      <div class="card-inner">
+        <div class="card-icon meetings">&#x1F4C5;<span class="check-badge" id="chk-meetings" style="display:none">&#x2713;</span></div>
+        <div class="card-content">
+          <div class="card-meta"><span class="card-tag published" id="tag-meetings">Published</span></div>
+          <div class="card-title">Procore Meetings</div>
+          <div class="card-desc">Record, assign, and follow up on every agenda item - with automatic rollover of unresolved actions to the next meeting.</div>
+        </div>
+        <div class="card-arrow" id="arr-meetings">&#x2192;</div>
+      </div>
+    </a>
+
+    <a class="entry-card published" id="card-photos" href="DYK%20-%20Procore%20Photos.html">
+      <div class="card-accent"></div>
+      <div class="card-inner">
+        <div class="card-icon photos">&#x1F4F7;<span class="check-badge" id="chk-photos" style="display:none">&#x2713;</span></div>
+        <div class="card-content">
+          <div class="card-meta"><span class="card-tag published" id="tag-photos">Published</span></div>
+          <div class="card-title">Procore Photos</div>
+          <div class="card-desc">Capture, organise, and share project photos in a secure archive - with GPS mapping, album organisation, and direct email sharing.</div>
+        </div>
+        <div class="card-arrow" id="arr-photos">&#x2192;</div>
+      </div>
+    </a>
+
+    <a class="entry-card published" id="card-defects" href="DYK%20-%20Procore%20Defect%20List.html">
+      <div class="card-accent"></div>
+      <div class="card-inner">
+        <div class="card-icon defects">&#x1F4CB;<span class="check-badge" id="chk-defects" style="display:none">&#x2713;</span></div>
+        <div class="card-content">
+          <div class="card-meta"><span class="card-tag published" id="tag-defects">Published</span></div>
+          <div class="card-title">Procore Defect List (Punchlisting)</div>
+          <div class="card-desc">Raise defects directly from site via mobile, attach photos and drawings, and track accountability through to closure.</div>
+        </div>
+        <div class="card-arrow" id="arr-defects">&#x2192;</div>
+      </div>
+    </a>
+
+    <a class="entry-card published" id="card-overlays" href="DYK%20-%20Document%20Management%20-%20Overlays.html">
+      <div class="card-accent"></div>
+      <div class="card-inner">
+        <div class="card-icon overlays">&#x1F4C4;<span class="check-badge" id="chk-overlays" style="display:none">&#x2713;</span></div>
+        <div class="card-content">
+          <div class="card-meta"><span class="card-tag published" id="tag-overlays">Published</span></div>
+          <div class="card-title">Document Management - Overlays</div>
+          <div class="card-desc">Overlay two revisions of any drawing and instantly see what changed - highlighted automatically. No more manual side-by-side comparison.</div>
+        </div>
+        <div class="card-arrow" id="arr-overlays">&#x2192;</div>
+      </div>
+    </a>
+
+    <!-- BADGES (hidden until logged in) -->
+    <div id="badgesSection" style="display:none">
+      <div class="section-label">Your badges</div>
+      <div class="badges-grid" id="badgesGrid"></div>
+    </div>
+
+    <div class="section-label">Coming soon</div>
+
+    <div class="entry-card coming-soon">
+      <div class="card-accent"></div>
+      <div class="card-inner">
+        <div class="card-icon soon" style="font-size:18px;color:#94a3b8">&#x1F4AC;</div>
+        <div class="card-content">
+          <div class="card-meta"><span class="card-tag coming-soon">Coming Soon</span></div>
+          <div class="card-title" style="color:#64748b">Procore Correspondence</div>
+          <div class="card-desc">How to use correspondence types correctly - and why the right code matters for your project audit trail.</div>
+        </div>
+        <div class="card-arrow">-</div>
+      </div>
+    </div>
+
+    <div class="entry-card coming-soon">
+      <div class="card-accent"></div>
+      <div class="card-inner">
+        <div class="card-icon soon" style="font-size:18px;color:#94a3b8">&#x1F4DD;</div>
+        <div class="card-content">
+          <div class="card-meta"><span class="card-tag coming-soon">Coming Soon</span></div>
+          <div class="card-title" style="color:#64748b">More topics to come&hellip;</div>
+          <div class="card-desc">Have a topic you&rsquo;d like covered? Suggest it using the button below and we&rsquo;ll add it to the series.</div>
+        </div>
+        <div class="card-arrow">-</div>
+      </div>
+    </div>
+
+    <div class="suggest-box">
+      <div class="suggest-icon">&#x1F4A1;</div>
+      <div class="suggest-content">
+        <h4>Have a topic you&rsquo;d like covered?</h4>
+        <p>If there&rsquo;s a Procore tool or workflow you&rsquo;d like to see featured in the Did You Know series, reach out to your Document Control team. We&rsquo;re always looking for the questions the team is actually asking.</p>
+        <a class="suggest-btn" href="mailto:bschedue@tesla.com?subject=DYK%20Series%20-%20Topic%20Suggestion&body=Hi%20Bobby%2C%0A%0AI%20have%20a%20suggestion%20for%20the%20Did%20You%20Know%20series%3A%0A%0A">Suggest a topic &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="series-dots">
+      <div class="fdot f"></div><div class="fdot f"></div><div class="fdot f"></div><div class="fdot f"></div><div class="fdot"></div>
+    </div>
+    <p>
+      <strong>Did You Know Series</strong> - Procore Tips for the Tesla Project Team<br>
+      Curated and distributed by your Document Control team.<br>
+      Questions? Reach out via email or the Procore Correspondence tool.
+    </p>
+  </div>
+
+</div>
+
+<script>
+const EK = 'dyk_email';
+const PK = 'dyk_progress';
+
+const COURSES = [
+  {id:'meetings', medal:'&#x1F3C5;', badge:'Meeting Master',    desc:'Procore Meetings'},
+  {id:'photos',   medal:'&#x1F4F8;', badge:'Photo Pro',         desc:'Procore Photos'},
+  {id:'defects',  medal:'&#x1F50D;', badge:'Defect Detective',  desc:'Defect List'},
+  {id:'overlays', medal:'&#x1F4D0;', badge:'Overlay Expert',    desc:'Doc Overlays'},
+];
+
+function getEmail(){ return localStorage.getItem(EK) || ''; }
+function getProgress(email){
+  try { return (JSON.parse(localStorage.getItem(PK)) || {})[email] || {}; } catch(e){ return {}; }
+}
+function initials(email){
+  const n = email.split('@')[0].split('.');
+  return n.length >= 2 ? (n[0][0] + n[1][0]).toUpperCase() : email.substring(0,2).toUpperCase();
+}
+
+function doLogin(){
+  const email = document.getElementById('emailInput').value.trim();
+  if(!email || !email.includes('@')){ alert('Please enter a valid email address.'); return; }
+  localStorage.setItem(EK, email);
+  updateUI(email);
+}
+
+function switchAccount(){
+  localStorage.removeItem(EK);
+  document.getElementById('loginPanel').style.display = '';
+  document.getElementById('profileBar').style.display = 'none';
+  document.getElementById('badgesSection').style.display = 'none';
+  document.getElementById('emailInput').value = '';
+  COURSES.forEach(c => {
+    document.getElementById('card-'+c.id).classList.remove('done');
+    const tag = document.getElementById('tag-'+c.id);
+    tag.className = 'card-tag published'; tag.textContent = 'Published';
+    document.getElementById('arr-'+c.id).innerHTML = '&#x2192;';
+    document.getElementById('chk-'+c.id).style.display = 'none';
+    document.getElementById('dot-'+c.id).className = 'sp-dot-circle done';
+    document.getElementById('dot-'+c.id).innerHTML = '&#x2605;';
+  });
+  document.getElementById('spTitle').textContent = 'Series progress';
+  document.getElementById('spCount').textContent = '4 of 5+ topics published';
+  document.getElementById('spBar').style.width = '80%';
+}
+
+function updateUI(email){
+  const prog = getProgress(email);
+  const doneCount = COURSES.filter(c => prog[c.id]).length;
+
+  document.getElementById('loginPanel').style.display = 'none';
+  document.getElementById('profileBar').style.display = '';
+  document.getElementById('badgesSection').style.display = '';
+
+  // Profile bar
+  document.getElementById('pbAv').textContent = initials(email);
+  document.getElementById('pbEmail').textContent = email;
+  document.getElementById('pbProg').innerHTML =
+    doneCount === COURSES.length
+      ? '&#x1F3C6; All ' + COURSES.length + ' guides completed!'
+      : doneCount + ' of ' + COURSES.length + ' guides completed';
+
+  // Progress bar
+  document.getElementById('spTitle').textContent = 'Your progress';
+  document.getElementById('spCount').textContent = doneCount + ' of ' + COURSES.length + ' completed';
+  document.getElementById('spBar').style.width = ((doneCount / COURSES.length) * 100) + '%';
+
+  // Cards + dots
+  COURSES.forEach(c => {
+    const done = !!prog[c.id];
+    document.getElementById('card-'+c.id).classList.toggle('done', done);
+    const tag = document.getElementById('tag-'+c.id);
+    if(done){ tag.className = 'card-tag done-tag'; tag.textContent = 'Completed ✓'; }
+    else     { tag.className = 'card-tag published'; tag.textContent = 'Published'; }
+    document.getElementById('arr-'+c.id).innerHTML = done ? '&#x2713;' : '&#x2192;';
+    document.getElementById('chk-'+c.id).style.display = done ? 'flex' : 'none';
+    document.getElementById('dot-'+c.id).className = 'sp-dot-circle ' + (done ? 'complete' : 'done');
+    document.getElementById('dot-'+c.id).innerHTML = done ? '&#x2713;' : '&#x2605;';
+  });
+
+  // Badges grid
+  document.getElementById('badgesGrid').innerHTML = COURSES.map(c => {
+    const earned = !!prog[c.id];
+    const dateStr = earned
+      ? new Date(prog[c.id]).toLocaleDateString('en-AU', {day:'numeric', month:'short', year:'numeric'})
+      : '';
+    return `<div class="badge-card ${earned ? 'earned' : 'locked'}">
+      <div class="bm">${earned ? c.medal : '&#x1F512;'}</div>
+      <div class="bt">${c.badge}</div>
+      <div class="bs">${c.desc}</div>
+      ${earned ? `<div class="bd">Earned ${dateStr}</div>` : '<div class="bs">Complete to unlock</div>'}
+    </div>`;
+  }).join('');
+}
+
+// Init
+(function(){
+  const email = getEmail();
+  if(email){ updateUI(email); }
+  document.getElementById('emailInput').addEventListener('keypress', e => {
+    if(e.key === 'Enter') doLogin();
+  });
+})();
+</script>
+</body>
+</html>

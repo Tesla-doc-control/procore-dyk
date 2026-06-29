@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Did You Know | Procore Meetings</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#f0f2f5;font-family:'Segoe UI',Arial,sans-serif;color:#1a1a2e}
+  a{color:inherit;text-decoration:none}
+  .wrapper{max-width:640px;margin:32px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,.12)}
+  .header{background:linear-gradient(135deg,#0d1b2a 0%,#1b3a5c 60%,#0f4c75 100%);padding:40px 36px 32px;position:relative;overflow:hidden}
+  .header::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:rgba(255,255,255,.04);border-radius:50%}
+  .header::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;background:rgba(255,255,255,.03);border-radius:50%}
+  .series-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:5px 14px;margin-bottom:20px}
+  .series-badge .dot{width:8px;height:8px;border-radius:50%;background:#4fc3f7;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .series-badge span{font-size:11px;font-weight:700;color:rgba(255,255,255,.85);letter-spacing:1.5px;text-transform:uppercase}
+  .eyebrow{font-size:12px;color:#4fc3f7;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+  .header h1{font-size:28px;font-weight:800;color:#fff;line-height:1.25;margin-bottom:8px}
+  .header h1 em{font-style:normal;color:#4fc3f7}
+  .header .subtitle{font-size:14px;color:rgba(255,255,255,.65);line-height:1.6}
+  .header-icon{position:absolute;right:36px;top:36px;width:64px;height:64px;background:rgba(79,195,247,.15);border:1px solid rgba(79,195,247,.3);border-radius:16px;display:flex;align-items:center;justify-content:center}
+  .hero-visual{background:linear-gradient(180deg,#1b3a5c 0%,#0d1b2a 100%);padding:28px 36px 32px;display:flex;justify-content:center}
+  .meeting-demo{width:100%;max-width:520px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+  .meeting-titlebar{background:#162535;padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .mtb-dots{display:flex;gap:5px}
+  .mtb-dot{width:10px;height:10px;border-radius:50%}
+  .mtb-dot.r{background:#ff6b6b}.mtb-dot.y{background:#ffd93d}.mtb-dot.g{background:#6bcb77}
+  .mtb-title{font-size:11px;color:rgba(255,255,255,.5);margin-left:8px;font-weight:600;letter-spacing:.5px}
+  .meeting-header-row{background:#1a2f45;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07)}
+  .meeting-name{font-size:13px;font-weight:700;color:#fff}
+  .meeting-meta{font-size:10px;color:rgba(255,255,255,.45)}
+  .meeting-body{background:#111e2d;padding:12px}
+  .agenda-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4fc3f7;margin-bottom:10px;padding:0 4px}
+  .agenda-item{display:flex;align-items:flex-start;gap:10px;padding:9px 10px;border-radius:6px;margin-bottom:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+  .agenda-item.active{background:rgba(79,195,247,.08);border-color:rgba(79,195,247,.25)}
+  .ai-check{width:16px;height:16px;border-radius:4px;border:1.5px solid rgba(255,255,255,.25);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#0d1b2a}
+  .ai-check.done{background:#4fc3f7;border-color:#4fc3f7}
+  .ai-content{flex:1}
+  .ai-title{font-size:11px;color:rgba(255,255,255,.85);font-weight:600;margin-bottom:3px}
+  .ai-meta{display:flex;gap:8px;align-items:center}
+  .ai-owner{font-size:9px;background:rgba(79,195,247,.15);color:#4fc3f7;padding:2px 7px;border-radius:10px;font-weight:600}
+  .ai-due{font-size:9px;color:rgba(255,255,255,.35)}
+  .rollover-bar{background:rgba(79,195,247,.06);border:1px dashed rgba(79,195,247,.3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:8px;margin-top:8px}
+  .rollover-icon{font-size:14px}.rollover-text{font-size:10px;color:rgba(255,255,255,.55);line-height:1.4}
+  .rollover-text strong{color:#4fc3f7}
+  .body{padding:32px 36px}
+  .intro{font-size:15px;color:#2c3e50;line-height:1.75;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid #f0f0f0}
+  .intro strong{color:#0f4c75}
+  .section-label{font-size:11px;font-weight:700;color:#0f4c75;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+  .section-label::after{content:'';flex:1;height:1px;background:#e8ecf0}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+  .why-card{background:#f8fafc;border:1px solid #e8ecf0;border-radius:10px;padding:16px;border-left:3px solid #0f4c75}
+  .why-card .icon{font-size:22px;margin-bottom:8px}
+  .why-card h4{font-size:13px;font-weight:700;color:#0d1b2a;margin-bottom:4px}
+  .why-card p{font-size:12px;color:#64748b;line-height:1.5}
+  .steps{margin-bottom:28px}
+  .step{display:flex;gap:16px;margin-bottom:16px;align-items:flex-start}
+  .step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#0f4c75,#1b6ca8);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;box-shadow:0 2px 8px rgba(15,76,117,.3)}
+  .step-content h4{font-size:13px;font-weight:700;color:#0d1b2a;margin-bottom:3px}
+  .step-content p{font-size:12px;color:#64748b;line-height:1.55}
+  .ss-step{margin-bottom:22px}
+  .ss-step-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .ss-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#0f4c75,#1b6ca8);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .ss-title{font-size:13px;font-weight:700;color:#0d1b2a}
+  .ss-desc{font-size:12px;color:#64748b;margin-top:2px;line-height:1.5}
+  .ss-img-wrap{border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-top:10px}
+  .ss-img-wrap.highlight{border:2px solid #0f4c75;box-shadow:0 4px 16px rgba(15,76,117,.15)}
+  .ss-img-wrap img{width:100%;display:block}
+  .ss-caption{font-size:11px;color:#94a3b8;margin-top:6px;text-align:center;margin-bottom:4px}
+  .btn-callout{display:flex;align-items:center;gap:16px;margin-top:10px;background:#f8fafc;border:1px solid #e8ecf0;border-radius:8px;padding:12px 14px}
+  .btn-callout img{border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.12);height:36px;width:auto;flex-shrink:0}
+  .btn-callout p{font-size:12px;color:#475569;line-height:1.5}
+  .tips-box{background:linear-gradient(135deg,#fff8e1,#fff3cd);border:1px solid #ffc107;border-radius:10px;padding:20px 20px 16px;margin-bottom:28px}
+  .tips-box .tips-header{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .tips-box .tips-header strong{font-size:13px;font-weight:800;color:#7c5e00;letter-spacing:.5px;text-transform:uppercase}
+  .tip-row{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+  .tip-row .tip-icon{font-size:15px;margin-top:1px;flex-shrink:0}
+  .tip-row p{font-size:12px;color:#5c4200;line-height:1.55}
+  .tip-row strong{color:#3d2c00}
+  .use-cases{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:28px}
+  .use-case{text-align:center;background:#f8fafc;border:1px solid #e8ecf0;border-radius:10px;padding:14px 10px}
+  .use-case .uc-icon{font-size:24px;margin-bottom:6px}
+  .use-case p{font-size:11px;color:#475569;line-height:1.4;font-weight:500}
+  .resources{margin-bottom:28px}
+  .resource-link{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#f8fafc;border:1px solid #e8ecf0;border-radius:8px;margin-bottom:8px;text-decoration:none}
+  .resource-link .rl-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+  .rl-icon.blue{background:#e3f2fd}.rl-icon.green{background:#e8f5e9}.rl-icon.purple{background:#f3e5f5}
+  .resource-link .rl-text strong{display:block;font-size:12px;font-weight:700;color:#0d1b2a;margin-bottom:1px}
+  .resource-link .rl-text span{font-size:11px;color:#64748b}
+  .resource-link .rl-arrow{margin-left:auto;color:#b0bec5;font-size:14px;flex-shrink:0}
+  .pdf-callout{background:#f0f7ff;border:1px solid #b3d4f5;border-radius:10px;padding:16px 18px;margin-bottom:28px;display:flex;align-items:flex-start;gap:14px}
+  .pdf-callout .pc-icon{font-size:28px;flex-shrink:0;margin-top:2px}
+  .pdf-callout h4{font-size:13px;font-weight:700;color:#0d1b2a;margin-bottom:4px}
+  .pdf-callout p{font-size:12px;color:#475569;line-height:1.55}
+  .cta-box{background:linear-gradient(135deg,#0d1b2a,#1b3a5c);border-radius:10px;padding:24px;text-align:center;margin-bottom:28px}
+  .cta-box p{color:rgba(255,255,255,.75);font-size:13px;margin-bottom:16px;line-height:1.6}
+  .cta-box p strong{color:#4fc3f7}
+  .cta-btn{display:inline-block;background:linear-gradient(135deg,#4fc3f7,#1976d2);color:#fff;font-weight:700;font-size:13px;padding:11px 28px;border-radius:25px;letter-spacing:.5px;box-shadow:0 4px 16px rgba(79,195,247,.3)}
+  .next-preview{background:#f8fafc;border:1px solid #e8ecf0;border-radius:10px;padding:16px 20px;margin-bottom:28px;display:flex;align-items:center;gap:14px}
+  .next-preview .np-badge{background:#e8ecf0;border-radius:6px;padding:4px 10px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#64748b;flex-shrink:0}
+  .next-preview p{font-size:12px;color:#475569;line-height:1.4}
+  .next-preview strong{color:#0d1b2a}
+  .footer{background:#f8fafc;border-top:1px solid #e8ecf0;padding:24px 36px;text-align:center}
+  .footer .series-dots{display:flex;justify-content:center;gap:6px;margin-bottom:12px}
+  .series-dot{width:8px;height:8px;border-radius:50%;background:#d0d7df}
+  .series-dot.active{background:#0f4c75;width:20px;border-radius:4px}
+  .footer p{font-size:11px;color:#94a3b8;line-height:1.7}
+  .footer strong{color:#475569}
+  @media(max-width:500px){
+    .why-grid{grid-template-columns:1fr}.use-cases{grid-template-columns:1fr 1fr}
+    .header h1{font-size:22px}.header-icon{display:none}
+    .body{padding:24px 20px}.header{padding:28px 20px 24px}
+    .hero-visual{padding:0 20px 24px}.footer{padding:20px}
+  }
+  .series-nav{background:#0a1520;padding:11px 28px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center}
+  .snav-link{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:.5px;text-decoration:none;transition:.15s}
+  .snav-link:hover{color:#4fc3f7}
+  .snav-arrow{font-size:14px}
+  html{zoom:1.75}.complete-box{padding:0 36px 24px}
+.complete-btn{width:100%;padding:16px;background:linear-gradient(135deg,#059669,#34d399);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 16px rgba(5,150,105,.3);font-family:inherit}
+.complete-btn:hover{opacity:.9}
+.cb-note{text-align:center;font-size:11px;color:#94a3b8;margin-top:8px}
+.complete-done{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #86efac;border-radius:10px;padding:18px 20px}
+.cd-medal{font-size:36px;flex-shrink:0}
+.cd-text{flex:1}
+.cd-title{font-size:14px;font-weight:800;color:#059669}
+.cd-date{font-size:11px;color:#64748b;margin-top:3px}
+.cd-check{font-size:24px;color:#059669;font-weight:900}
+</style>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_ApprovalStatus msdt:dt="string">0</mso:_ApprovalStatus>
+<mso:_ApprovalAssignedTo msdt:dt="string"></mso:_ApprovalAssignedTo>
+<mso:_ApprovalRespondedBy msdt:dt="string"></mso:_ApprovalRespondedBy>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+<nav class="series-nav"><a class="snav-link" href="DYK%20-%20Series%20Index.html"><span class="snav-arrow">&#x2190;</span><span>Did You Know Series</span></a></nav>
+<div class="wrapper">
+  <div class="header">
+    <div class="header-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+        <rect x="3" y="7" width="30" height="24" rx="3" fill="rgba(79,195,247,.18)" stroke="rgba(79,195,247,.8)" stroke-width="1.3"/>
+        <rect x="3" y="7" width="30" height="7" rx="3" fill="rgba(79,195,247,.35)"/>
+        <rect x="10" y="2" width="3" height="8" rx="1.5" fill="#4fc3f7"/>
+        <rect x="23" y="2" width="3" height="8" rx="1.5" fill="#4fc3f7"/>
+        <line x1="8" y1="19" x2="18" y2="19" stroke="rgba(79,195,247,.7)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="8" y1="24" x2="22" y2="24" stroke="rgba(79,195,247,.4)" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="26" cy="22" r="5" fill="rgba(76,175,80,.25)" stroke="rgba(76,175,80,.8)" stroke-width="1.2"/>
+        <polyline points="23.5,22 25.5,24 28.5,20" stroke="#6bcb77" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="series-badge"><div class="dot"></div><span>Did You Know Series</span></div>
+    <div class="eyebrow">Procore Meetings Tool</div>
+    <h1>Record, assign, and <em>follow up</em><br>on every meeting item</h1>
+    <p class="subtitle">Keep your project meetings structured, documented, and accountable - all within Procore.</p>
+  </div>
+  <div class="hero-visual">
+    <div class="meeting-demo">
+      <div class="meeting-titlebar">
+        <div class="mtb-dots"><div class="mtb-dot r"></div><div class="mtb-dot y"></div><div class="mtb-dot g"></div></div>
+        <div class="mtb-title">PROCORE - MEETINGS</div>
+      </div>
+      <div class="meeting-header-row">
+        <div><div class="meeting-name">Weekly Site Coordination - #12</div><div class="meeting-meta">Wednesday, 14 May &bull; Block A, Site Office</div></div>
+        <div style="font-size:9px;background:rgba(76,175,80,.15);color:#6bcb77;padding:3px 9px;border-radius:10px;font-weight:700;letter-spacing:.5px">IN PROGRESS</div>
+      </div>
+      <div class="meeting-body">
+        <div class="agenda-label">Agenda &amp; Action Items</div>
+        <div class="agenda-item"><div class="ai-check done">&#x2713;</div><div class="ai-content"><div class="ai-title">Safety walk recap - Block C findings</div><div class="ai-meta"><span class="ai-owner">J. Nguyen</span><span class="ai-due">Closed</span></div></div></div>
+        <div class="agenda-item active"><div class="ai-check"></div><div class="ai-content"><div class="ai-title">Review latest drawing revision - IFC Package 7</div><div class="ai-meta"><span class="ai-owner">B. Schedue</span><span class="ai-due">Due 16 May</span></div></div></div>
+        <div class="agenda-item"><div class="ai-check"></div><div class="ai-content"><div class="ai-title">Confirm concrete pour schedule with subcontractor</div><div class="ai-meta"><span class="ai-owner">M. Torres</span><span class="ai-due">Due 17 May</span></div></div></div>
+        <div class="agenda-item"><div class="ai-check"></div><div class="ai-content"><div class="ai-title">Commission checklist sign-off - Inverter Room</div><div class="ai-meta"><span class="ai-owner">D. Uys</span><span class="ai-due">Due 21 May</span></div></div></div>
+        <div class="rollover-bar"><div class="rollover-icon">&#x21BA;</div><div class="rollover-text"><strong>2 items rolled over</strong> automatically from Meeting #11 - no copy/paste required.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <p class="intro">Procore&rsquo;s <strong>Meetings Tool</strong> allows you to record, assign, and follow up on every agenda item discussed with internal teams, contractors, and clients - <strong>all within one space</strong>. Whether it&rsquo;s weekly planning sessions, design workshops, commissioning meetings, or site coordination catchups, the Meetings tool helps ensure nothing is missed or left undocumented.</p>
+
+    <div class="section-label">Why it matters</div>
+    <div class="why-grid">
+      <div class="why-card"><div class="icon">&#x1F4CB;</div><h4>Centralised meeting records</h4><p>All agendas, notes, and attachments are kept inside the project - not scattered across inboxes or spreadsheets.</p></div>
+      <div class="why-card"><div class="icon">&#x2705;</div><h4>Action items assigned during the meeting</h4><p>Turn discussion points into real tasks. Assign owners, due dates, and track closure in real time.</p></div>
+      <div class="why-card"><div class="icon">&#x21BA;</div><h4>Automatic rollover of open items</h4><p>Any unresolved items automatically continue to the next meeting - no manual copy/paste required.</p></div>
+      <div class="why-card"><div class="icon">&#x1F4DD;</div><h4>Versioned minutes with audit trail</h4><p>Every revision of your minutes is recorded, ensuring full traceability and accountability across the project.</p></div>
+    </div>
+
+    <div class="section-label">Key actions - straight from Procore</div>
+    <p style="font-size:13px;color:#475569;line-height:1.65;margin-bottom:16px">These are the actual Procore UI buttons you&rsquo;ll use when working with Meetings - each plays a distinct role in keeping your records structured and complete.</p>
+    <div class="ss-step">
+      <div class="ss-step-header"><div class="ss-num">1</div><div><div class="ss-title">Create a new meeting</div><div class="ss-desc">Use this button to start a new meeting record. Set the date, attendees, and agenda items before the meeting begins.</div></div></div>
+      <div class="btn-callout">
+        <img src="data:image/png;base64,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" alt="Create meeting button in Procore">
+        <p>Click <strong>+ Create meeting</strong> from the Meetings tool to open a new meeting and begin building your agenda ahead of time.</p>
+      </div>
+    </div>
+    <div class="ss-step">
+      <div class="ss-step-header"><div class="ss-num">2</div><div><div class="ss-title">Schedule a follow-up meeting</div><div class="ss-desc">After your meeting, use this button to create the next occurrence - carrying forward all unresolved action items automatically.</div></div></div>
+      <div class="btn-callout">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK8AAAA4CAYAAACL8aiOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAgASURBVHhe7Zx/SJv5HcdfnVSScysRQcwscqlwJdLR2jvXtSBC4I4S6Vbiut5FkImurOitPSo40G7MWsZOOywqd6xKxxXt2KEUiuXYoSAFZcjZCZLQbV1ArksRSoLQNZw498f3G5M81eYxauzTfV7w8CTfH8/3x/P+fp7P5/uE7FldXV1FECzIt4wJgmAVRLyCZRHxCpZFxCtYFhGvYFlEvIJlEfEKlkXEK1gWEa9gWfZs6Q3bo6/g8yvwt7/AN8+NuYKwOXLtcOQ9OHMZSt825r5A5uJ99BW0VYpohe0n1w5X76cVcOZuw+dXRLjCzvDNc6WvNGRued9/Q8Qr7By5dvjTf4ypKWRueUW4wk5iQl+Zi1cQdhkRr2BZRLyCZRHxCpZFxCtYFhGvYFlEvIJlyfwlhW+PMSUN5VDlNiYqnk7DfMiY+iKHfFAA/H0UwkCFH96IwuQ9Y0lhS7jgwhDsD8Pva9Rc7wajL5dmFsU7AKMNxkTFfAv86pox9UU6InAIuJkPd4HeVSgOgq/MWFIwjQfONYA9BNfbdVoT/LEP9kVhIB92yzakEW/23YZYECaHU4/ZB8ZSQtYoh0o/VPmS0vrhSjV01+yecE2QffGuhOF6bepxZ0JnuqB+DD6NwK0wXB2BCkP9dFR2Q9e/YDgCvVNwxqszfNARgJ5xOKyTPAPQE4DWtkT91gD0zEK82ka0BqBnJCnBD1eT09oS164bgxsRuBGAen9SHQPnp6BnCk42QVdYzcGFJsAL7QG49Rx6x6DSlVrvZF9izF3j4C1PzccLrVOJPrR2ghPd5yawoea+JwDndf9+3A0/adL1TY6ltEnNwa0IdA3ByXXmdxvJvng3xAUds3DKCwU2yHGA2wctAfMCPj0OH12CUhdgg6Lj8MEINHuBUchxQYkHjuryx6qhxA2HPDqhEw67oZj0Fme/W9Vdw6m+r6W59LVb4JQH8mzgcMOpIfhog5XhdENJOdT1QbEDbEVQ1Q7XhuB7Lsi1QbEXzg8l6pweh3NN8KYTnkbgTQ80TkF9XOBe6B2BY8dhb0T161gbdIwA+VDghBzUfBW6wJGvqqWMb52xFLjh1GBSO5fgch+43aqfJX6oq1X19hsW2zaRffHajqrVuHZMQRVQ1QeHHPBsAn5hB78dJkOw1w3v9xmvsg5++KEHiMJnB1T9j4dhxQZV2tLMa/fkYKe6Id8tghUgr0z1wXtcWaEns8aLZ05eDAbLVH8G9YqoiPuW62GDuWpVfnQaKILCWbhoh7PV8BSwueEUiTGvhOBjO3x4IDHmSj1n9Z1QbFNxxU8PwM/KYD4KBT6o74eft8MzgKBq87f9qd1JxhZR7fjtMBVSfT2o45jmBtgHhIfhrB3OHoB/xoxX2FayL94cR8JCxY99KMsCELqXiG6va3eicINdihQ84ACezcIdvXMxUwuPURb3HeD2lBJrYbkKSoqA4IQSyBEXlOk+PLyqzh0RFTSsHYFEc2ZZnIIvdH++uAaLgM2lFsu6RCGgRX5btxcN6Tm5Byl60GNetkOtNga15bAMOPRYXPpc2KCNxRgU6uquS2tXMsXiNMzozw/1mPKK1LnQqc7BWl0gBDPbaATWIfvifTahdirWDr1zsC5P1M3KsRszzBOLKQvxbVQgsoB6fJ8ph5wYBAchCpQ0gdOlJv2+vjGzQ6mB5VTcN98Ey5GkLxNKWNjUgt0pFoOwEExNW0n6HAur/PAm98D+m/5nitkk++LdiKdRdc5L8o885eoxHksWwEZoodvydTAC0ACFNmXN/o0SZiio/NMfuGAlCLeH4esoFPqURYoGYU5Xv9OcGlh2N6+1psiHuLvsdOnAx0DB0UR/nN1qn5rwSxbsZtBjJgQXy/RRDX9ugYs1qsiSnrtQc6JMbwsMVMMnw8kX2xrxdvZ3JtIO7oyvG+fVEe/tEVgCXA3w6z6oHYI6LxCDGRN7wLTDwyjklEP7ONR2Qle3eqwujMGkLnY/qCxfiQsWtCUNBtWiyQP+kRQMvYylmHI36gNwYQQ6arRVNWDT/bkwBO06sg+liwbNosdsO652ObxN0DoGLWNwQ+96fKmtfcUQnG+DmgH45YjaeakDeKB9Xie0DMHp+GrcJPF23mqDTwPQG4aK/xfxcg36+2HJBoeboMavgp2ZdvjE5OP6N7XwKApOD9S0QakDFu/B7xoTZeb6ld+ZA4R0cBL3hYnCvElr1NcOizHIc6s90vCgCqaMPB6F5RNQ5QenTfWnu8VYKnPiYy7xQWMfHHPD0gP4g7a8c41w+x6sFMG7nVDboBb0TDt8hnJl/joNKw444YfKDXZC0jHXCDeH1RN0nwu+E4Fxk/ctQ7L4hm0THPJBQSzz175OD7xVBF8PwyNjZrbQbxQfD8KHjWpMPDD3GjwTzIy5wg97n2zgu7uUpZxZL88kpV4VVMbbPz0OdR5YGISLSQbELGnesL2a4n0tMIj3defdETjng1gI5qZh2QHveNXT824Z3Mxg0aYR7yvkNrxuxNROR2xn9zpfGb6sgbsTyoKf8EOVVwWUky2ZCdcEYnmFVxexvMLriohXsCwiXsGyiHgFyyLiFSxL5uLN3cKPZQQhHSb0lbl4j7xnTBGE7cOEvjIX75nLplaHIGyaXLvSVxoyF2/p2+rfq7//IxGxsD3k2pWeTPwrOlt6wyYIu0zmllcQdhkRr2BZRLyCZRHxCpZFxCtYFhGvYFlEvIJlEfEKlkXEK1iW/wEld3uuUaAMwwAAAABJRU5ErkJggg==" alt="Follow-up meeting button in Procore">
+        <p>The <strong>Follow-up meeting</strong> button creates the next meeting with open items pre-populated. Remember to update the date before you start!</p>
+      </div>
+    </div>
+
+    <div class="pdf-callout">
+      <div class="pc-icon">&#x1F4C4;</div>
+      <div>
+        <h4>Example: Real project meeting minutes from Procore</h4>
+        <p>Attached to the original email is a real example of Procore-generated meeting minutes from the <strong>Williamsdale BESS - Tesla Fortnightly Project Meeting</strong>. This is exactly the kind of structured, exportable record that Procore produces automatically - complete with agenda items, attendees, action holders, and due dates. No manual formatting required.</p>
+      </div>
+    </div>
+
+    <div class="section-label">How to use it effectively</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Create your meeting agenda in advance</h4><p>Set discussion topics, include documents or drawings, and add relevant attendees before the meeting starts.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Capture live notes during the meeting</h4><p>Record key decisions and discussion outcomes in real time, straight into Procore - from any device.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Assign responsibilities on the spot</h4><p>Add action item owners, due dates, and next steps directly during the meeting so nothing is forgotten.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Distribute minutes post-meeting</h4><p>Share the agreed record automatically from Procore - ensuring every attendee has the same approved minutes.</p></div></div>
+    </div>
+
+    <div class="section-label">Ideal for</div>
+    <div class="use-cases">
+      <div class="use-case"><div class="uc-icon">&#x1F3D7;&#xFE0F;</div><p>Weekly site coordination meetings</p></div>
+      <div class="use-case"><div class="uc-icon">&#x1F4BC;</div><p>Design &amp; commissioning workshops</p></div>
+      <div class="use-case"><div class="uc-icon">&#x1F91D;</div><p>Client &amp; contractor coordination</p></div>
+    </div>
+
+    <div class="tips-box">
+      <div class="tips-header"><span style="font-size:18px">&#x26A1;</span><strong>Pro(core) Tip</strong></div>
+      <div class="tip-row"><div class="tip-icon">&#x21BA;</div><p>Use the <strong>Follow-up meeting</strong> button to automatically carry any unresolved items into the next meeting. <strong>Important:</strong> update the meeting date before you start - this is easy to miss!</p></div>
+      <div class="tip-row"><div class="tip-icon">&#x1F4AC;</div><p>You can <strong>assign action holders and due dates</strong> to individual agenda items - not just the meeting as a whole. This makes accountability crystal clear for every team member.</p></div>
+    </div>
+
+    <div class="section-label">Resources</div>
+    <div class="resources">
+      <a class="resource-link" href="https://support.procore.com/products/online/user-guide/project-level/meetings" target="_blank">
+        <div class="rl-icon blue">&#x1F4D6;</div>
+        <div class="rl-text"><strong>Procore Meetings - User Guide</strong><span>support.procore.com - Full documentation and feature overview</span></div>
+        <div class="rl-arrow">&#x2197;</div>
+      </a>
+      <a class="resource-link" href="https://support.procore.com/products/online/user-guide/project-level/meetings/videos" target="_blank">
+        <div class="rl-icon purple">&#x1F3AC;</div>
+        <div class="rl-text"><strong>Procore Meetings - Video Library</strong><span>support.procore.com - Official Procore training videos</span></div>
+        <div class="rl-arrow">&#x2197;</div>
+      </a>
+    </div>
+
+    <div class="cta-box">
+      <p>Want a live walkthrough of the Meetings tool on your project?<br>Reach out to your <strong>Document Controller</strong> - it takes less than 5 minutes to see the value.</p>
+      <a class="cta-btn" href="mailto:bschedue@tesla.com?subject=Procore%20Meetings%20Walkthrough%20Request&body=Hi%20Bobby%2C%0A%0ACan%20you%20please%20arrange%20a%20walkthrough%20of%20the%20Meetings%20tool%20for%20me%3F">Request a Walkthrough &rarr;</a>
+    </div>
+
+    <div class="next-preview">
+      <div class="np-badge">Up next</div>
+      <p><strong>Coming soon in the Did You Know series:</strong> How to use Procore Photos to capture, organise, and share project progress - and why every photo should live in Procore, not your camera roll.</p>
+    </div>
+  </div>
+  <div class="complete-box"><div id="completeSection"></div></div>
+<div class="footer">
+    <div class="series-dots">
+      <div class="series-dot active"></div><div class="series-dot"></div><div class="series-dot"></div><div class="series-dot"></div><div class="series-dot"></div>
+    </div>
+    <p><strong>Did You Know Series</strong> - Procore Tips for the Tesla Project Team<br>Sent by your Document Control team to help you get the most from the project DMS.<br>Questions? Reply to this email or reach out via the Procore Correspondence tool.</p>
+  </div>
+</div>
+<script>
+const COURSE_ID   = 'meetings';
+const BADGE_NAME  = 'Meeting Master';
+const BADGE_MEDAL = '&#x1F3C5;';
+const EK = 'dyk_email';
+const PK = 'dyk_progress';
+function getEmail(){ return localStorage.getItem(EK) || ''; }
+function getProgress(email){
+  try { return (JSON.parse(localStorage.getItem(PK)) || {})[email] || {}; } catch(e){ return {}; }
+}
+function markDone(){
+  const email = getEmail();
+  if(!email){ alert('Visit the Series Index first and enter your email to track your progress.'); return; }
+  const all = JSON.parse(localStorage.getItem(PK) || '{}');
+  if(!all[email]) all[email] = {};
+  all[email][COURSE_ID] = new Date().toISOString();
+  localStorage.setItem(PK, JSON.stringify(all));
+  renderCompleteSection(email);
+}
+function renderCompleteSection(email){
+  const prog = getProgress(email);
+  const done = !!prog[COURSE_ID];
+  const el = document.getElementById('completeSection');
+  if(!el) return;
+  if(done){
+    const d = new Date(prog[COURSE_ID]).toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'});
+    el.innerHTML = '<div class="complete-done"><div class="cd-medal">'+BADGE_MEDAL+'</div><div class="cd-text"><div class="cd-title">Badge Earned: '+BADGE_NAME+'</div><div class="cd-date">Completed '+d+'</div></div><div class="cd-check">&#x2713;</div></div>';
+  } else if(email) {
+    el.innerHTML = '<button class="complete-btn" onclick="markDone()">&#x2713; Mark as Complete &amp; Earn Badge</button><div class="cb-note">Logged in as <strong>'+email+'</strong></div>';
+  }
+}
+(function(){
+  const email = getEmail();
+  const nav = document.querySelector('.series-nav');
+  if(email && nav){
+    const prog = getProgress(email);
+    if(prog[COURSE_ID]){
+      const chip = document.createElement('span');
+      chip.style.cssText = 'margin-left:auto;font-size:11px;color:#34d399;font-weight:700;display:flex;align-items:center;gap:4px';
+      chip.innerHTML = '&#x2713; Completed';
+      nav.appendChild(chip);
+    }
+  }
+  renderCompleteSection(email);
+})();
+</script>
+</body>
+</html>
